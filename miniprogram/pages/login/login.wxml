@@ -1,0 +1,40 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+    <view class="text-center">
+        <view class="login-text mb50">
+            <view class="login-title mb10">Hello Again ~ !</view>
+            <view class="login-welcome">欢迎回到羊毛网</view>
+        </view>
+        <view class="login-block">
+            <view class="form">
+                <van-cell-group>
+                    <van-field
+                        label="用户名"
+                        model:value="{{ userInfo.username }}"
+                        placeholder="请输入用户名"
+                        border="{{ false }}"
+                    />
+                    <van-field
+                        label="密码"
+                        model:value="{{ userInfo.password }}"
+                        placeholder="请输入密码"
+                        border="{{ false }}"
+                    />
+                    <van-field
+                        label="验证码"
+                        model:value="{{ userInfo.code }}"
+                        placeholder="请输入验证码"
+                        border="{{ false }}"
+                    />
+                </van-cell-group>
+            </view>
+            <view class="checkbox mt25">
+                <van-checkbox value="{{ rememberAccount }}" bind:change="onChangeRemember">记住账号</van-checkbox>
+            </view>
+            <!--登录按钮-->
+            <view class="mt50 mb25">
+                <van-button round type="primary" class="login-btn" color="#333333">登录</van-button>
+            </view>
+        </view>
+    </view>
+</view>
