@@ -1,4 +1,7 @@
 // pages/login/login.ts
+
+import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
+
 Page({
 
     /**
@@ -11,14 +14,57 @@ Page({
             password: "",
             code: "",
         },
-        rememberAccount: ""
+        rememberAccount: "",
+        codeDialog: false, //展示二维码弹窗
+        wxLogin: wx.canIUse('login'), //是否可以使用微信登录
     },
 
+    /**
+     * 页面的methods
+     */
     //是否记住账号
     onChangeRemember(event: any) {
         this.setData({
             rememberAccount: event.detail
         })
+    },
+    //发送验证码
+    sendCode() {
+        this.setData({
+            codeDialog: true
+        })
+    },
+    //关闭二维码弹窗
+    onClose() {
+        this.setData({
+            codeDialog: false,
+        })
+    },
+    //使用微信登录
+    weChatLogin() {
+        if (!this.data.wxLogin) {
+            Toast.fail("不支持微信登录");
+            return;
+        }
+        console.log('支持微信登录');
+        Toast.loading({
+            duration: 0,
+            message: "登录中..."
+        })
+        wx.getUserProfile({
+            desc: '获取用户信息并展示', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+            success: (res) => {
+                if (!res.userInfo) return;
+                console.log(res);
+                //跳转至首页
+                wx.redirectTo({
+                    url: "/pages/index/index"
+                })
+            },
+            complete: () => {
+                Toast.clear();
+            }
+        });
     },
 
     /**

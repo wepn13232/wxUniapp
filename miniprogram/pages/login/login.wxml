@@ -25,7 +25,10 @@
                         model:value="{{ userInfo.code }}"
                         placeholder="请输入验证码"
                         border="{{ false }}"
-                    />
+                        use-button-slot
+                    >
+                        <van-button slot="button" round size="small" bind:tap="sendCode">获取验证码</van-button>
+                    </van-field>
                 </van-cell-group>
             </view>
             <view class="checkbox mt25">
@@ -35,6 +38,25 @@
             <view class="mt50 mb25">
                 <van-button round type="primary" class="login-btn" color="#333333">登录</van-button>
             </view>
+
+            <!--使用微信登录-->
+            <view class="display-center mt10">
+                <text class="font-gray">使用微信登录</text>
+                <image src="../../assets/img/wechat_logo.svg" class="svg-logo ml10" bind:tap="weChatLogin"></image>
+            </view>
         </view>
     </view>
+
+    <!--Toast、Dialog-->
+    <van-toast id="van-toast"/>
+    <van-dialog id="van-dialog"/>
+
+    <!--展示二维码弹窗-->
+    <van-popup custom-style="width: 70%" show="{{ codeDialog }}" bind:close="onClose" round>
+        <view class="dialog_content">
+            <image src="../../assets/img/wechat_qrCode.jpeg" class="img_wechat" show-menu-by-longpress="true"></image>
+            <view class="mt25">关注公众号回复“<text class="font-blue">验证码</text>”获取
+            </view>
+        </view>
+    </van-popup>
 </view>
