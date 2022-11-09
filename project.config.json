@@ -25,7 +25,8 @@
       }
     ],
     "es6": true,
-    "enhance": true
+    "enhance": true,
+    "minified": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
