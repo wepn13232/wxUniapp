@@ -7,6 +7,7 @@ Page({
         allGoodsLists: [], //全部商品列表
         showGoodsLists: [], //展示的商品
         showNums: 10, //默认一开始列表只展示10个
+        popupShow: false, //展示左边的菜单
     },
     //获取商品列表
     _getGoodsLists() {
@@ -33,12 +34,24 @@ Page({
     //列表滑动到底部时触发
     handlerToBottom() {
         if (this.data.showNums >= this.data.allGoodsLists.length) {
-            Toast("已经全部加载完了");
+            Toast("已经到底啦");
             return;
         }
         this.setData({
             showNums: this.data.showNums += 10, //每次下拉到最低下加10个商品
             showGoodsLists: this.data.allGoodsLists.slice(0, this.data.showNums)
+        })
+    },
+    //打开左边的菜单
+    tapMenu() {
+        this.setData({
+            popupShow: true,
+        })
+    },
+    //关闭popup菜单
+    closeMenu() {
+        this.setData({
+            popupShow: false,
         })
     },
 
