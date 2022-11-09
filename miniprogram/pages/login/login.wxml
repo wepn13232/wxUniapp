@@ -35,14 +35,14 @@
                 <van-checkbox value="{{ rememberAccount }}" bind:change="onChangeRemember">记住账号</van-checkbox>
             </view>
             <!--登录按钮-->
-            <view class="mt50 mb25">
+            <view class="mt50">
                 <van-button round type="primary" class="login-btn" color="#333333">登录</van-button>
             </view>
 
             <!--使用微信登录-->
-            <view class="display-center mt10">
-                <text class="font-gray">使用微信登录</text>
-                <image src="../../assets/img/wechat_logo.svg" class="svg-logo ml10" bind:tap="weChatLogin"></image>
+            <view class="text-center mt50">
+                <view class="font-gray">使用微信登录</view>
+                <image src="../../assets/img/wechat_logo.svg" class="svg-logo mt10" bind:tap="weChatLogin"></image>
             </view>
         </view>
     </view>

@@ -46,7 +46,6 @@ Page({
             Toast.fail("不支持微信登录");
             return;
         }
-        console.log('支持微信登录');
         Toast.loading({
             duration: 0,
             message: "登录中..."
@@ -55,7 +54,7 @@ Page({
             desc: '获取用户信息并展示', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
             success: (res) => {
                 if (!res.userInfo) return;
-                console.log(res);
+                wx.setStorageSync('userInfo', res.userInfo); //储存用户信息
                 //跳转至首页
                 wx.redirectTo({
                     url: "/pages/index/index"

@@ -1,4 +1,27 @@
 <!--index.wxml-->
 <view class="index">
-    这里是主页面
+    <!--商品列表-->
+    <view class="goods-container">
+        <scroll-view enable-back-to-top="true" scroll-y="true" enhanced="true" bounces="true" style="height:100vh"
+                     bindscrolltolower="handlerToBottom">
+            <view class="block-lists">
+                <!--商品块-->
+                <view class="block" wx:for="{{showGoodsLists}}" wx:key="id">
+                    <!--商品图片-->
+                    <image class="goods_img" src="{{item.large_image}}" mode="aspectFill"></image>
+                    <view class="goods_info">
+                        <view class="goods_name">{{item.trial_name}}</view>
+                        <view class="price">
+                            <view class="price_cur">￥{{ item.order_price || '-' }}</view>
+                            <view class="price_prev ml10">￥{{ item.price || '-' }}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+
+    <!--Toast、Dialog-->
+    <van-toast id="van-toast"/>
+    <van-dialog id="van-dialog"/>
 </view>
