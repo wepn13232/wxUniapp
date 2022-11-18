@@ -32,7 +32,7 @@
     <!--左边菜单-->
     <van-popup show="{{ popupShow }}" bind:close="closeMenu" position="left" custom-style="height:100vh" round>
         <view class="menu-container">
-            哦对没有内容
+            <leftMenu></leftMenu>
         </view>
     </van-popup>
 </view>

@@ -1,6 +1,13 @@
 <!--用户中心-->
 <view class="userCenter">
     <view class="user-container">
-
+        <!--用户头像-->
+        <view class="avatar">
+            <button open-type="chooseAvatar" class="user-avatar" bind:chooseavatar="toChooseAvatar">
+                <image src="{{userInfo.avatarUrl}}" class="avatar-img"/>
+            </button>
+        </view>
+        <view class="userName mt10">{{userInfo.nickName || "暂无昵称"}}</view>
+        <view class="tips mt50">可点击头像、昵称进行修改</view>
     </view>
 </view>
