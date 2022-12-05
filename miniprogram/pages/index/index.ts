@@ -8,6 +8,8 @@ Page({
         showGoodsLists: [], //展示的商品
         showNums: 10, //默认一开始列表只展示10个
         popupShow: false, //展示左边的菜单
+        currItem: {}, //当前展示的item内容
+        goodsPopup: false, //详细商品弹窗
     },
     //获取商品列表
     _getGoodsLists() {
@@ -52,6 +54,20 @@ Page({
     closeMenu() {
         this.setData({
             popupShow: false,
+        })
+    },
+    // 点击具体的商品
+    clickCurrGoods(e: any) {
+        console.log(e.currentTarget.dataset.item);
+        this.setData({
+            currItem: e.currentTarget.dataset.item,
+            goodsPopup: true,
+        })
+    },
+    // 关闭商品详细弹窗
+    closeGoodsPopup() {
+        this.setData({
+            goodsPopup: false,
         })
     },
 

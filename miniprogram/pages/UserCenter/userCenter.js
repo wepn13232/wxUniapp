@@ -9,6 +9,10 @@ Page({
             ["userInfo.avatarUrl"]: e.detail.avatarUrl, //重新设置头像
         })
     },
+    // 返回
+    goBack(){
+        wx.navigateBack()
+    },
     onLoad: function (options) {
 
     }

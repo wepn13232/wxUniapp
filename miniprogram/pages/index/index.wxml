@@ -10,7 +10,8 @@
                      bindscrolltolower="handlerToBottom">
             <view class="block-lists">
                 <!--商品块-->
-                <view class="block" wx:for="{{showGoodsLists}}" wx:key="id">
+                <view class="block" wx:for="{{showGoodsLists}}" wx:key="id" bindtap="clickCurrGoods"
+                      data-item="{{item}}">
                     <!--商品图片-->
                     <image class="goods_img" src="{{item.large_image}}" mode="aspectFill"></image>
                     <view class="goods_info">
@@ -33,6 +34,15 @@
     <van-popup show="{{ popupShow }}" bind:close="closeMenu" position="left" custom-style="height:100vh" round>
         <view class="menu-container">
             <leftMenu></leftMenu>
+        </view>
+    </van-popup>
+
+    <!--商品详细内容-->
+    <van-popup show="{{goodsPopup}}" bindclose="closeGoodsPopup" position="bottom" custom-style="height:90vh"
+               custom-class="goodsPopup"
+               round>
+        <view class="goodsPopup-container">
+            这里商品详情
         </view>
     </van-popup>
 </view>

@@ -37,7 +37,7 @@ Component({
     lifetimes: {
         //组件实例进入页面节点的时候
         attached() {
-            console.log(this.data.userInfo)
+
         },
         //组件被创建的时候
         created() {

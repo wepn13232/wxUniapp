@@ -7,7 +7,18 @@
                 <image src="{{userInfo.avatarUrl}}" class="avatar-img"/>
             </button>
         </view>
-        <view class="userName mt10">{{userInfo.nickName || "暂无昵称"}}</view>
-        <view class="tips mt50">可点击头像、昵称进行修改</view>
+        <view class="userName mt10">
+            <van-field
+                value="{{ userInfo.nickName }}"
+                label="用户昵称"
+                placeholder="请输入用户昵称"
+                type="nickname"
+            />
+        </view>
+        <view class="tips mt10">可点击头像、昵称进行修改</view>
+        <view class="btn-group mt50">
+            <van-button type="info" round>保存</van-button>
+            <van-button round class="ml25" bindtap="goBack">返回</van-button>
+        </view>
     </view>
 </view>
