@@ -5,7 +5,7 @@ import Toast from "../miniprogram_npm/@vant/weapp/toast/toast";
 
 let mainUrl = "https://www.fastmock.site/mock/d306c80954e9bef449aa4d05b6c32ec8/chuanWx";
 
-export function ajax_fetch(url, method, data, contentType) {
+export function requestUrl(url, method, data, contentType) {
     let header;
     if (method == "get" || method == "GET") {
         header = {

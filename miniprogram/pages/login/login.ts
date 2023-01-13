@@ -17,6 +17,8 @@ Page({
         rememberAccount: "",
         codeDialog: false, //展示二维码弹窗
         wxLogin: wx.canIUse('login'), //是否可以使用微信登录
+        showAccountLogin: false, //是否使用账号密码登录
+        showText: false,
     },
 
     /**
@@ -70,7 +72,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-
+        // 动画加载首页文字
+        this.setData({
+            showText: true
+        })
     },
 
     /**

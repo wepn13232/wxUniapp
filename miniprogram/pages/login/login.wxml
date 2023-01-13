@@ -1,11 +1,19 @@
 <!--pages/login/login.wxml-->
 <view class="login-container">
-    <view class="text-center">
+    <image src="../../assets/img/login-index.jpeg" class="wallpaper"></image>
+    <view class="login-content">
         <view class="login-text mb50">
-            <view class="login-title mb10">Hello Again ~ !</view>
-            <view class="login-welcome">欢迎回到羊毛网</view>
+            <van-transition show="{{showText}}" duration="{{ { enter: 1000} }}">
+                <image src="../../assets/img/logo-sheep.svg" class="icon-sheep-logo"></image>
+            </van-transition>
+            <van-transition show="{{showText}}" custom-class="block" name="slide-left"
+                            duration="{{ { enter: 1000} }}">
+                <view>开启你的购物之旅</view>
+                <view class="tips mt10">可以使用微信直接登录账号</view>
+            </van-transition>
         </view>
-        <view class="login-block">
+        <!--使用账号密码登录-->
+        <view class="login-block" wx:if="{{showAccountLogin}}">
             <view class="form">
                 <van-cell-group>
                     <van-field
@@ -43,6 +51,18 @@
             <view class="text-center mt50">
                 <view class="font-gray">使用微信登录</view>
                 <image src="../../assets/img/wechat_logo.svg" class="svg-logo mt10" bind:tap="weChatLogin"></image>
+            </view>
+        </view>
+
+        <!--选择登录方式-->
+        <view class="footer-btn choose-login-type">
+            <van-button round>使用账号密码登录</van-button>
+            <!--使用微信直接登录-->
+            <view class="mt25">
+                <van-button round type="primary">使用微信登录</van-button>
+            </view>
+            <view class="login-tips mt25">
+                登录即表明同意用户协议和隐私政策
             </view>
         </view>
     </view>
