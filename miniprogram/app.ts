@@ -4,8 +4,13 @@ App({
         userInfo: {}, //用户信息
     },
 
+    // 获取微信小程序版本号码
+    getWxVersion() {
+        console.log("线上小程序基础库版本号：", wx.getAccountInfoSync().miniProgram.version)
+    },
     //APP加载时执行
     onLaunch() {
+        this.getWxVersion();
         // wx.getStorage({
         //     key: "userInfo",
         //     success: (res) => {

@@ -12,59 +12,68 @@
                 <view class="tips mt10">可以使用微信直接登录账号</view>
             </van-transition>
         </view>
+        <block wx:if="{{!showAccountLogin}}">
+            <!--选择登录方式-->
+            <view class="footer-btn choose-login-type">
+                <van-button round bind:tap="useAccount">使用账号密码登录</van-button>
+                <!--使用微信直接登录-->
+                <view class="mt25">
+                    <van-button round type="primary" bindtap="weChatLogin">使用微信登录</van-button>
+                </view>
+                <view class="login-tips mt25">
+                    登录即表明同意用户协议和隐私政策
+                </view>
+            </view>
+        </block>
+
         <!--使用账号密码登录-->
-        <view class="login-block" wx:if="{{showAccountLogin}}">
-            <view class="form">
-                <van-cell-group>
-                    <van-field
-                        label="用户名"
-                        model:value="{{ userInfo.username }}"
-                        placeholder="请输入用户名"
-                        border="{{ false }}"
-                    />
-                    <van-field
-                        label="密码"
-                        model:value="{{ userInfo.password }}"
-                        placeholder="请输入密码"
-                        border="{{ false }}"
-                    />
-                    <van-field
-                        label="验证码"
-                        model:value="{{ userInfo.code }}"
-                        placeholder="请输入验证码"
-                        border="{{ false }}"
-                        use-button-slot
-                    >
-                        <van-button slot="button" round size="small" bind:tap="sendCode">获取验证码</van-button>
-                    </van-field>
-                </van-cell-group>
-            </view>
-            <view class="checkbox mt25">
-                <van-checkbox value="{{ rememberAccount }}" bind:change="onChangeRemember">记住账号</van-checkbox>
-            </view>
-            <!--登录按钮-->
-            <view class="mt50">
-                <van-button round type="primary" class="login-btn" color="#333333">登录</van-button>
-            </view>
+        <van-transition show="{{showAccountLogin}}" custom-class="block">
+            <view class="login-block" wx:if="{{showAccountLogin}}">
+                <view class="form">
+                    <van-cell-group>
+                        <van-field
+                            label="用户名"
+                            bindinput="fieldChange"
+                            data-name="username"
+                            model:value="{{ userInfo.username }}"
+                            placeholder="请输入用户名"
+                            border="{{ false }}"
+                        />
+                        <van-field
+                            label="密码"
+                            bindinput="fieldChange"
+                            data-name="password"
+                            model:value="{{ userInfo.password }}"
+                            placeholder="请输入密码"
+                            type="password"
+                            border="{{ false }}"
+                        />
+                        <van-field
+                            label="验证码"
+                            bindinput="fieldChange"
+                            data-name="code"
+                            model:value="{{ userInfo.code }}"
+                            placeholder="请输入验证码"
+                            border="{{ false }}"
+                            use-button-slot
+                        >
+                            <van-button slot="button" round size="small" bind:tap="sendCode">获取验证码</van-button>
+                        </van-field>
+                    </van-cell-group>
+                </view>
+                <view class="font-white font-size-25 mt10">并未对接数据库，所以任何字段都可以进行登录测试</view>
+                <!--登录按钮-->
+                <view class="mt50">
+                    <van-button round type="info" class="login-btn" bindtap="loginCheck">登录</van-button>
+                </view>
 
-            <!--使用微信登录-->
-            <view class="text-center mt50">
-                <view class="font-gray">使用微信登录</view>
-                <image src="../../assets/img/wechat_logo.svg" class="svg-logo mt10" bind:tap="weChatLogin"></image>
+                <!--使用微信登录-->
+                <view class="text-center mt50">
+                    <image src="../../assets/img/wechat_logo.svg" class="svg-logo mt10" bind:tap="weChatLogin"></image>
+                    <view class="font-white useWeChat">使用微信登录</view>
+                </view>
             </view>
-        </view>
-
-        <!--选择登录方式-->
-        <view class="footer-btn choose-login-type">
-            <van-button round>使用账号密码登录</van-button>
-            <!--使用微信直接登录-->
-            <view class="mt25">
-                <van-button round type="primary">使用微信登录</van-button>
-            </view>
-            <view class="login-tips mt25">
-                登录即表明同意用户协议和隐私政策
-            </view>
-        </view>
+        </van-transition>
     </view>
 
     <!--Toast、Dialog-->

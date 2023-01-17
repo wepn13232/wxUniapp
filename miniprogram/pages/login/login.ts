@@ -1,6 +1,7 @@
 // pages/login/login.ts
 
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
+import {login} from "../../utils/url";
 
 Page({
 
@@ -21,15 +22,6 @@ Page({
         showText: false,
     },
 
-    /**
-     * 页面的methods
-     */
-    //是否记住账号
-    onChangeRemember(event: any) {
-        this.setData({
-            rememberAccount: event.detail
-        })
-    },
     //发送验证码
     sendCode() {
         this.setData({
@@ -52,8 +44,7 @@ Page({
             duration: 0,
             message: "登录中..."
         })
-        wx.getUserProfile({
-            desc: '获取用户信息并展示', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        wx.getUserInfo({
             success: (res) => {
                 if (!res.userInfo) return;
                 wx.setStorageSync('userInfo', res.userInfo); //储存用户信息
@@ -67,6 +58,46 @@ Page({
             }
         });
     },
+    // 使用账号密码登录模块
+    useAccount() {
+        this.setData({
+            showAccountLogin: true
+        })
+    },
+    // 使用接口登录
+    _login() {
+        Toast.loading({
+            duration: 0,
+            message: "登录中..."
+        })
+        login({}).then(res => {
+            if (+res.status === 200) {
+                Toast.success("登录成功")
+            } else {
+                Toast.fail(res.desc);
+            }
+        }).catch(err => {
+            console.log('错误func--->_login', err);
+            Toast.fail("登录出现错误");
+        })
+    },
+    // 登录校验
+    loginCheck() {
+        if (!this.data.userInfo.username || !this.data.userInfo.password || !this.data.userInfo.code) {
+            Toast.fail("请填写必要值");
+        }else{
+            this._login();
+        }
+    },
+    // 输入框内容变更
+    fieldChange(e: any) {
+        let name = e.target.dataset.name;
+        let dataName = `userInfo.${name}`
+        this.setData({
+            [dataName]: e.detail
+        })
+    },
+
 
     /**
      * 生命周期函数--监听页面加载
