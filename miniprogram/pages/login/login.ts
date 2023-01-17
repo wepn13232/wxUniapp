@@ -47,11 +47,15 @@ Page({
         wx.getUserInfo({
             success: (res) => {
                 if (!res.userInfo) return;
-                wx.setStorageSync('userInfo', res.userInfo); //储存用户信息
+                // wx.setStorageSync('userInfo', res.userInfo); //储存用户信息
                 //跳转至首页
-                wx.redirectTo({
+                wx.reLaunch({
                     url: "/pages/index/index"
                 })
+            },
+            error: (err:any) => {
+                Toast.fail("登录出现错误");
+                console.log(err)
             },
             complete: () => {
                 Toast.clear();
@@ -85,7 +89,7 @@ Page({
     loginCheck() {
         if (!this.data.userInfo.username || !this.data.userInfo.password || !this.data.userInfo.code) {
             Toast.fail("请填写必要值");
-        }else{
+        } else {
             this._login();
         }
     },

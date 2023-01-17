@@ -10,7 +10,7 @@ App({
     },
     //APP加载时执行
     onLaunch() {
-        this.getWxVersion();
+        // this.getWxVersion();
         // wx.getStorage({
         //     key: "userInfo",
         //     success: (res) => {

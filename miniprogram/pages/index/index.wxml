@@ -2,7 +2,7 @@
 <view class="index">
     <!--商品列表-->
     <view class="goods-container">
-        <scroll-view enable-back-to-top="true" scroll-y="true" enhanced="true" bounces="true" style="height:100vh"
+        <scroll-view enable-back-to-top="true" scroll-y="true" enhanced="true" bounces="true" style="height:calc(100vh - 100rpx)"
                      bindscrolltolower="handlerToBottom">
             <view class="block-lists">
                 <!--商品块-->
