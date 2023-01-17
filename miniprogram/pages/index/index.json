@@ -1,5 +1,3 @@
 {
-  "usingComponents": {
-    "leftMenu": "/pages/LeftMenu/leftMenu"
-  }
+  "usingComponents": {}
 }

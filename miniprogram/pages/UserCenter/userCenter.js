@@ -10,10 +10,16 @@ Page({
         })
     },
     // 返回
-    goBack(){
+    goBack() {
         wx.navigateBack()
     },
     onLoad: function (options) {
 
+    },
+    onShow() {
+        // 设置导航激活状态
+        this.getTabBar().setData({
+            active: 1
+        })
     }
 });

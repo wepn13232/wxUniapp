@@ -1,9 +1,5 @@
 <!--index.wxml-->
 <view class="index">
-    <!--左边popup菜单-->
-    <view class="left-menu" bind:tap="tapMenu">
-        <van-icon name="ellipsis" size="30px"/>
-    </view>
     <!--商品列表-->
     <view class="goods-container">
         <scroll-view enable-back-to-top="true" scroll-y="true" enhanced="true" bounces="true" style="height:100vh"
@@ -29,13 +25,6 @@
     <!--Toast、Dialog-->
     <van-toast id="van-toast"/>
     <van-dialog id="van-dialog"/>
-
-    <!--左边菜单-->
-    <van-popup show="{{ popupShow }}" bind:close="closeMenu" position="left" custom-style="height:100vh" round>
-        <view class="menu-container">
-            <leftMenu></leftMenu>
-        </view>
-    </van-popup>
 
     <!--商品详细内容-->
     <van-popup show="{{goodsPopup}}" bindclose="closeGoodsPopup" position="bottom" custom-style="height:90vh"

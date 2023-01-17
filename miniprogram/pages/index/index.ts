@@ -75,4 +75,10 @@ Page({
     onLoad() {
         this._getGoodsLists();
     },
+    onShow(): void | Promise<void> {
+        // 设置导航激活状态
+        this.getTabBar().setData({
+            active: 0
+        })
+    }
 })
