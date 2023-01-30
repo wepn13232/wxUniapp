@@ -2,7 +2,7 @@
 <view class="index">
     <!--商品列表-->
     <view class="goods-container">
-        <scroll-view enable-back-to-top="true" scroll-y="true" enhanced="true" bounces="true" style="height:calc(100vh - 100rpx)"
+        <scroll-view enable-back-to-top="true" scroll-y="true" enhanced="true" bounces="true" class="scroll-view"
                      bindscrolltolower="handlerToBottom">
             <view class="block-lists">
                 <!--商品块-->
@@ -27,11 +27,44 @@
     <van-dialog id="van-dialog"/>
 
     <!--商品详细内容-->
-    <van-popup show="{{goodsPopup}}" bindclose="closeGoodsPopup" position="bottom" custom-style="height:90vh"
+    <van-popup show="{{goodsPopup}}" bindclose="closeGoodsPopup" position="bottom"
                custom-class="goodsPopup"
                round>
         <view class="goodsPopup-container">
-            这里商品详情
+            <!--图片-->
+            <image src="{{currItem.large_image || '-'}}" class="goods-img" mode="aspectFill"/>
+            <!--详情内容-->
+            <view class="goods-detail">
+                <!--标题-->
+                <view class="title font-black">{{currItem.trial_name || "-"}}</view>
+                <view class="goods-tips mt25">
+                    <!--价格-->
+                    <view class="price bold">￥{{currItem.order_price || "--"}}</view>
+                    <!--来源-->
+                    <view class="icon ml25 {{currItem.shop_type == 1 ? 'blue' : 'yellow'}}">
+                        {{currItem.shop_type == 1 ? '自营店铺' : '第三方店铺'}}
+                    </view>
+                </view>
+                <view class="clearFix"></view>
+                <!--时间、数量数据-->
+                <view class="data mt25">
+                    <view class="time border-gray">
+                        <van-icon name="underway-o" size="50rpx"/>
+                        <view class="mt10 bold">{{currItem.currDate || "-"}}</view>
+                        <view class="bold">{{currItem.currTime || "-"}}</view>
+                    </view>
+                    <view class="nums border-gray ml25">
+                        <van-icon name="points" size="50rpx"/>
+                        <view>剩余数量</view>
+                        <view class="mt10 bold">{{currItem.supply_count || 0}}</view>
+                    </view>
+                </view>
+                <!--操作按钮-->
+                <view class="operation-btn mt50">
+                    <van-button type="info" round bindtap="getCopy" data-value="{{currItem.shop_id}}">复制链接</van-button>
+                    <van-button round class="ml25" bindtap="closeGoodsPopup">关闭详情</van-button>
+                </view>
+            </view>
         </view>
     </van-popup>
 </view>

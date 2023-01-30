@@ -1,5 +1,6 @@
 import {getGoodsLists} from "../../utils/url";
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
+import {copyValue} from "../../utils/util";
 
 Page({
     data: {
@@ -44,12 +45,6 @@ Page({
             showGoodsLists: this.data.allGoodsLists.slice(0, this.data.showNums)
         })
     },
-    //打开左边的菜单
-    tapMenu() {
-        this.setData({
-            popupShow: true,
-        })
-    },
     //关闭popup菜单
     closeMenu() {
         this.setData({
@@ -59,9 +54,13 @@ Page({
     // 点击具体的商品
     clickCurrGoods(e: any) {
         console.log(e.currentTarget.dataset.item);
+        let currDate = (new Date(e.currentTarget.dataset.item.activity_start_time)).toLocaleDateString().replace(/\//g, "-");
+        let currTime = (new Date(e.currentTarget.dataset.item.activity_start_time)).toTimeString().substr(0, 8);
         this.setData({
             currItem: e.currentTarget.dataset.item,
             goodsPopup: true,
+            'currItem.currDate': currDate,
+            'currItem.currTime': currTime
         })
     },
     // 关闭商品详细弹窗
@@ -70,6 +69,12 @@ Page({
             goodsPopup: false,
         })
     },
+    // 复制内容
+    getCopy(e: any) {
+        let value = e.currentTarget.dataset.value.toString();
+        copyValue(value); //进行微信复制
+    },
+
 
     //页面开始加载
     onLoad() {
