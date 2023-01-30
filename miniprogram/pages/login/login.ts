@@ -76,7 +76,11 @@ Page({
         })
         login({}).then(res => {
             if (+res.status === 200) {
-                Toast.success("登录成功")
+                Toast.success("登录成功");
+                //跳转至首页
+                wx.reLaunch({
+                    url: "/pages/index/index"
+                })
             } else {
                 Toast.fail(res.desc);
             }

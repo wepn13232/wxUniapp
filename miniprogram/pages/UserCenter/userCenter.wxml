@@ -1,24 +1,7 @@
 <!--用户中心-->
 <view class="userCenter">
     <view class="user-container">
-        <!--用户头像-->
-        <view class="avatar">
-            <button open-type="chooseAvatar" class="user-avatar" bind:chooseavatar="toChooseAvatar">
-                <image src="{{userInfo.avatarUrl}}" class="avatar-img"/>
-            </button>
-        </view>
-        <view class="userName mt10">
-            <van-field
-                value="{{ userInfo.nickName }}"
-                label="用户昵称"
-                placeholder="请输入用户昵称"
-                type="nickname"
-            />
-        </view>
-        <view class="tips mt10">可点击头像、昵称进行修改</view>
-        <view class="btn-group mt50">
-            <van-button type="info" round>保存</van-button>
-            <van-button round class="ml25" bindtap="goBack">返回</van-button>
-        </view>
+       <image src="../../assets/img/unfinished.svg" class="unfinished-img"/>
+        <view class="tips">目前该页面还在改造中...请耐心等待哦</view>
     </view>
 </view>
