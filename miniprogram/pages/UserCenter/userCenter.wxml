@@ -1,7 +1,51 @@
 <!--用户中心-->
 <view class="userCenter">
     <view class="user-container">
-       <image src="../../assets/img/unfinished.svg" class="unfinished-img"/>
-        <view class="tips">目前该页面还在改造中...请耐心等待哦</view>
+        <view class="user-card {{userInfo.uType == 1 ? 'card-yellow' : 'card-blue'}}">
+            <view class="user-info">
+                <view class="user-logo">
+                    <button class="user-logo" open-type="chooseAvatar" bind:chooseavatar="toChooseAvatar">
+                        <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+                    </button>
+                </view>
+                <view class="user-name ml25">{{userInfo.nickName || "微信用户"}}</view>
+            </view>
+            <!--用户等级-->
+            <view class="user-rank">{{userInfo.uType == 1 ? '超级会员' : '普通会员'}}</view>
+        </view>
+        <!--操作列表-->
+        <view class="operation-lists mt50">
+            <van-cell-group>
+                <!--会员剩余时间-->
+                <van-cell>
+                    <view slot="title">
+                        <view class="display-flex">
+                            <image src="../../assets/img/vip-days.svg" class="cell-icon"/>
+                            <view class="cell-title ml25">会员剩余时间</view>
+                        </view>
+                    </view>
+                    {{userInfo.timeLeft || 0}}天
+                </van-cell>
+                <!--会员地址-->
+                <van-cell>
+                    <view slot="title">
+                        <view class="display-flex">
+                            <image src="../../assets/img/icon-address.svg" class="cell-icon"/>
+                            <view class="cell-title ml25">会员地址</view>
+                        </view>
+                    </view>
+                    {{userInfo.address || "暂无地址"}}
+                </van-cell>
+                <!--复制优惠码-->
+                <van-cell border="{{ false }}" is-link>
+                    <view slot="title">
+                        <view class="display-flex">
+                            <image src="../../assets/img/icon-copy.svg" class="cell-icon"/>
+                            <view class="cell-title ml25">生成邀请码</view>
+                        </view>
+                    </view>
+                </van-cell>
+            </van-cell-group>
+        </view>
     </view>
 </view>

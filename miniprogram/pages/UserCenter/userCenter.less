@@ -15,4 +15,84 @@
     font-size: 30rpx;
     color: #777777;
   }
+
+  .user-container {
+    padding: 40rpx;
+
+    .user-card {
+      height: 200rpx;
+      border-radius: 15rpx;
+      padding: 40rpx;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1200);
+      display: flex;
+      position: relative;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+
+        .user-logo {
+          width: 120rpx;
+          height: 120rpx;
+          border-radius: 50%;
+          background: #ffffff;
+          padding: 0;
+
+          .avatar {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .user-name {
+          font-size: 40rpx;
+          font-weight: 500;
+        }
+      }
+
+      .user-rank {
+        position: absolute;
+        right: 40rpx;
+        bottom: 40rpx;
+        font-size: 25rpx;
+        padding: 5rpx 10rpx;
+        border-radius: 15rpx;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+      }
+    }
+
+    .card-yellow {
+      background: rgb(255, 223, 74);
+      background: linear-gradient(90deg, rgba(255, 223, 74, 1) 0%, rgba(255, 179, 72, 1) 100%);
+
+    }
+
+    .card-blue {
+      background: rgb(161, 182, 250);
+      background: linear-gradient(90deg, rgba(161, 182, 250, 1) 0%, rgba(106, 142, 255, 1) 100%);
+    }
+
+    .operation-lists {
+      .van-cell {
+        padding: 20rpx 0;
+        font-size: 30rpx;
+        font-size: 500;
+      }
+
+      .van-cell__title {
+        text-align: left;
+      }
+
+      .cell-icon {
+        width: 50rpx;
+        height: 50rpx;
+      }
+
+      .display-flex {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
 }

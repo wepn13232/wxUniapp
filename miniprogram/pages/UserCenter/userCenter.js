@@ -1,6 +1,6 @@
 Page({
     data: {
-        userInfo: wx.getStorageSync("userInfo"),
+        userInfo: {},
     },
     //用户选择头像
     toChooseAvatar(e) {
@@ -9,10 +9,6 @@ Page({
             ["userInfo.avatarUrl"]: e.detail.avatarUrl, //重新设置头像
         })
     },
-    // 返回
-    goBack() {
-        wx.navigateBack()
-    },
     onLoad: function (options) {
 
     },
@@ -20,6 +16,10 @@ Page({
         // 设置导航激活状态
         this.getTabBar().setData({
             active: 1
+        })
+        // 获取用户信息
+        this.setData({
+            userInfo: wx.getStorageSync("userInfo"),
         })
     }
 });

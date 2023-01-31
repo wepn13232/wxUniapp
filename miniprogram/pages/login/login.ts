@@ -47,13 +47,13 @@ Page({
         wx.getUserInfo({
             success: (res) => {
                 if (!res.userInfo) return;
-                // wx.setStorageSync('userInfo', res.userInfo); //储存用户信息
+                wx.setStorageSync('userInfo', res.userInfo); //储存用户信息
                 //跳转至首页
                 wx.reLaunch({
                     url: "/pages/index/index"
                 })
             },
-            error: (err:any) => {
+            error: (err: any) => {
                 Toast.fail("登录出现错误");
                 console.log(err)
             },
@@ -76,6 +76,7 @@ Page({
         })
         login({}).then(res => {
             if (+res.status === 200) {
+                wx.setStorageSync("userInfo", res.data); //储存用户信息
                 Toast.success("登录成功");
                 //跳转至首页
                 wx.reLaunch({
