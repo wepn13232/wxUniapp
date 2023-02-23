@@ -10,10 +10,10 @@ Component({
             let url;
             switch (event.detail) {
                 case 0:
-                    url = "/pages/index/index";
+                    url = "/pages/home/home";
                     break;
                 case 1:
-                    url = "/pages/UserCenter/userCenter";
+                    url = "/pages/account/account";
                     break;
             }
             wx.switchTab({
@@ -27,5 +27,6 @@ Component({
         ready() {
 
         },
-    }
+    },
+
 });

@@ -1,13 +1,12 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/index/index",
-    "pages/UserCenter/userCenter"
+    "pages/home/home",
+    "pages/account/account"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "大羊毛",
+    "navigationBarTitleText": "7元记账小程序",
+    "navigationStyle":"custom",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -15,11 +14,11 @@
     "list": [
       {
         "text": "首页",
-        "pagePath": "pages/index/index"
+        "pagePath": "pages/home/home"
       },
       {
         "text": "用户中心",
-        "pagePath": "pages/UserCenter/userCenter"
+        "pagePath": "pages/account/account"
       }
     ]
   },

@@ -1,4 +1,18 @@
-<van-tabbar active="{{ active }}" bind:change="onChange">
-    <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item icon="friends-o">用户中心</van-tabbar-item>
+<van-tabbar active="{{ active }}"
+            bind:change="onChange"
+            active-color="#17abe3"
+            inactive-color="#707070">
+    <van-tabbar-item>
+        <view class="tab-item">
+            <image src="{{active === 0 ? '../assets/img/lists-active.svg' : '../assets/img/lists.svg'}}"></image>
+            <view class="tab-font">记账记录</view>
+        </view>
+    </van-tabbar-item>
+    <van-button>开始记账</van-button>
+    <van-tabbar-item>
+        <view class="tab-item">
+            <image src="{{active === 1 ? '../assets/img/account-active.svg' : '../assets/img/account.svg'}}"></image>
+            <view class="tab-font">账本</view>
+        </view>
+    </van-tabbar-item>
 </van-tabbar>

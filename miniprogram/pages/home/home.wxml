@@ -1,0 +1,19 @@
+<!--pages/home/home.wxml-->
+<view class="home">
+    <!--banner首页图，显示信息-->
+    <view class="top-banner">
+        <image src="../../assets/img/banner.jpeg" mode="aspectFill" class="banner-img"/>
+        <view class="banner-font">
+            <view>
+                这个月已经支出<text class="prices-num">12344</text>元
+            </view>
+            <view class="mt25">
+                这个月收入<text class="prices-num">12344</text>元
+            </view>
+        </view>
+    </view>
+    <!--记账列表-->
+    <view class="lists mt50">
+        这里是我的列表
+    </view>
+</view>
