@@ -8,3 +8,7 @@ export function getGoodsLists(data) {
 export function login(data) {
     return requestUrl("/login", "post", data)
 }
+//获取所有支出、收入记录
+export function getAllRecord(data) {
+    return requestUrl("/getAllRecord", "get", data)
+}

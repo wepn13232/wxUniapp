@@ -4,16 +4,39 @@
     <view class="top-banner">
         <image src="../../assets/img/banner.jpeg" mode="aspectFill" class="banner-img"/>
         <view class="banner-font">
-            <view>
-                这个月已经支出<text class="prices-num">12344</text>元
+            <view class="out">
+                已经支出<text class="prices-num">{{totalOut}}</text>元
+                <view class="color-block"></view>
             </view>
-            <view class="mt25">
-                这个月收入<text class="prices-num">12344</text>元
+            <view class="income mt25">
+                已经收入<text class="prices-num">50</text>元
+                <view class="color-block"></view>
             </view>
         </view>
     </view>
     <!--记账列表-->
-    <view class="lists mt50">
-        这里是我的列表
+    <view class="lists">
+        <!--信息块-->
+        <view class="lists-block" wx:for="{{lists_data}}" wx:key="id">
+            <!--时间-->
+            <view class="date mb10">
+                {{item.currDateTime}}
+            </view>
+            <!--支出/收入信息-->
+            <view class="lists-info">
+                <image src="../../assets/img/money-icon.svg" class="money-icon" mode="aspectFill"/>
+                <!--具体的消费信息/收入信息-->
+                <view class="info-detail ml25">
+                    <view class="title">
+                        <view class="title-font">{{item.behavior}}</view>
+                        <view class="price">- {{item.money}}</view>
+                    </view>
+                    <view class="time mt15">{{item.time}} · 这里是备注</view>
+                </view>
+            </view>
+        </view>
     </view>
+
+
+    <van-toast id="van-toast" />
 </view>

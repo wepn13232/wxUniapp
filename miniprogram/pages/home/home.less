@@ -4,29 +4,96 @@
 
   .top-banner {
     position: relative;
+    height: 45vh;
+    overflow: hidden;
 
     .banner-img {
-      height: 45vh;
-      width: 150%;
+      height: 100%;
+      width: 130%;
       z-index: -1;
     }
 
     .banner-font {
       position: absolute;
-      top: 200rpx;
+      top: 230rpx;
       left: 50rpx;
       color: #606060;
-      font-size: 35rpx;
+      font-size: 38rpx;
       font-weight: 500;
 
-      .prices-num {
-        color: #ffffff;
-        font-size: 45rpx;
+      .out, .income {
+        position: relative;
+        width: fit-content;
+
+        .color-block {
+          width: 100%;
+          height: 15rpx;
+          background: rgba(70, 170, 246, 0.5);
+          position: absolute;
+          bottom: 2rpx;
+          left: 0;
+          border-radius: 12rpx;
+        }
+      }
+
+      .out {
+        .prices-num {
+          font-size: 45rpx;
+          color: #E68479;
+        }
+      }
+
+      .income {
+        .prices-num {
+          font-size: 45rpx;
+          color: #46A9F7;
+        }
       }
     }
   }
 
-  .lists{
-    padding: 0 40rpx;
+  .lists {
+    padding: 40rpx 40rpx calc(90rpx + env(safe-area-inset-bottom)) 40rpx;
+
+    .lists-block {
+      margin-bottom: 60rpx;
+
+      .date {
+        font-weight: 500;
+      }
+
+      .lists-info {
+        padding: 20rpx;
+        background: #F7F6F1;
+        border-radius: 20rpx;
+        display: flex;
+        align-items: center;
+        box-shadow: rgba(96, 96, 96, 0.05) 0 1rpx 15rpx 0;
+
+        .money-icon {
+          width: 80rpx;
+          height: 80rpx;
+        }
+
+        .info-detail {
+          width: calc(100% - 100rpx);
+
+          .title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+
+          .time {
+            color: #9E9C9D;
+            font-size: 25rpx;
+          }
+        }
+      }
+    }
   }
+}
+
+page {
+  background: #EDEBE7;
 }
