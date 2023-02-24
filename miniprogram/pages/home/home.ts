@@ -1,6 +1,6 @@
 import {getAllRecord} from "../../utils/url"
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
-import {formatDate} from "../../utils/util";
+import {compare, formatDate} from "../../utils/util";
 
 
 Page({
@@ -27,9 +27,11 @@ Page({
                 res[i].currDateTime = formatDate(res[i].dateTime);
                 totalOut += res[i].money;
             }
+            // 进行日期排序，倒叙
+            res.sort(compare("date"));
             this.setData({
                 lists_data: res,
-                totalOut:totalOut
+                totalOut: totalOut
             })
             console.log(res)
             Toast.clear();

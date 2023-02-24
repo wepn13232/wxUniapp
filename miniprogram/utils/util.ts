@@ -66,3 +66,12 @@ export const formatDate = (date: Date) => {
     }
     return `${month}月${day}日 ${weekDay}`
 }
+
+// 根据数组对象的日期进行排序
+export const compare = (property: string) => {
+    return function (a: any, b: any) {
+        var value1 = a[property];
+        var value2 = b[property];
+        return value2.replace(/-/g,'') - value1.replace(/-/g,'') ;
+    }
+}

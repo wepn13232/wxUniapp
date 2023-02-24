@@ -1,1 +1,60 @@
 /* pages/account/account.wxss */
+.account {
+  padding-bottom: calc(84rpx + env(safe-area-inset-bottom));
+
+  .account-content {
+    position: relative;
+
+    .account-title {
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 40rpx;
+      padding: 5rpx 0;
+      position: fixed;
+    }
+
+    .wallet-lists {
+      padding: 100rpx 20rpx 40rpx 20rpx;
+
+      .wallet-block {
+        padding: 20rpx;
+        background: #F7F6F1;
+        border-radius: 20rpx;
+        box-shadow: rgba(96, 96, 96, 0.05) 0 1rpx 15rpx 0;
+        display: flex;
+        align-items: center;
+
+        .wallet-icon {
+          width: 80rpx;
+          height: 80rpx;
+        }
+
+        .wallet-info {
+          margin-left: 20rpx;
+          font-size: 30rpx;
+          color: #303030;
+          width: 100%;
+
+          .info-name {
+            font-weight: 500;
+          }
+
+          .info-total {
+            display: flex;
+            font-size: 25rpx;
+          }
+        }
+      }
+    }
+
+    .add-wallet{
+      text-align: center;
+    }
+  }
+}
+
+
+page {
+  background: #EDEBE7;
+}

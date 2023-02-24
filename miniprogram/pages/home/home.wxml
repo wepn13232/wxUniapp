@@ -9,7 +9,7 @@
                 <view class="color-block"></view>
             </view>
             <view class="income mt25">
-                已经收入<text class="prices-num">50</text>元
+                已经收入<text class="prices-num">0</text>元
                 <view class="color-block"></view>
             </view>
         </view>

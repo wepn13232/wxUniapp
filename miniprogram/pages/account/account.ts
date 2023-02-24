@@ -1,16 +1,19 @@
 // pages/account/account.ts
+const app = getApp();
 Page({
 
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        safe_height: app.globalData.safe_height, //距离顶部的安全距离
+        capsuleTop:app.globalData.capsuleTop, //胶囊顶部的距离
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-
     },
 
     /**

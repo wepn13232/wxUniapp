@@ -1,4 +1,26 @@
 <!--pages/account/account.wxml-->
-<view>
-    这里是账本
+<view class="account" style="padding-top:{{capsuleTop}}">
+    <!--账本列表-->
+    <view class="account-content">
+        <view class="account-title">账本</view>
+        <!--账本列表-->
+        <view class="wallet-lists">
+            <view class="wallet-block mb25" wx:for="{{[1,2,3,4,5,6,7,7,7,7]}}" wx:key="index">
+                <image src="../../assets/img/wallet.svg" class="wallet-icon"/>
+                <view class="wallet-info">
+                    <!--账本名称-->
+                    <view class="info-name">七元的小账本</view>
+                    <!--账本总支出、总收入-->
+                    <view class="info-total mt25">
+                        <view>总支出：777777元</view>
+                        <view class="ml30">总收入：777777元</view>
+                    </view>
+                </view>
+            </view>
+            <!--新增账本-->
+            <view class="add-wallet mt50 mb50">
+                <van-button round size="small" type="info">新增账本</van-button>
+            </view>
+        </view>
+    </view>
 </view>
