@@ -5,7 +5,7 @@
         <view class="account-title">账本</view>
         <!--账本列表-->
         <view class="wallet-lists">
-            <view class="wallet-block mb25" wx:for="{{[1,2,3,4,5,6,7,7,7,7]}}" wx:key="index">
+            <view class="wallet-block mb25" wx:for="{{[1,2,3,4]}}" wx:key="index">
                 <image src="../../assets/img/wallet.svg" class="wallet-icon"/>
                 <view class="wallet-info">
                     <!--账本名称-->
@@ -19,8 +19,65 @@
             </view>
             <!--新增账本-->
             <view class="add-wallet mt50 mb50">
-                <van-button round size="small" type="info">新增账本</van-button>
+                <van-button round type="info" bindtap="onShowPopUp">+ 新增账本</van-button>
             </view>
         </view>
     </view>
+
+    <!--添加新账本 弹窗-->
+    <van-popup
+        show="{{ walletPopup }}"
+        round
+        position="bottom"
+        custom-style="height: 80%"
+        bind:close="onClose"
+        class="wallet-popup"
+    >
+        <view class="popup-title">
+            <view class="title-font">
+                添加新的账本
+                <view class="title-block"></view>
+            </view>
+        </view>
+        <!--表单-->
+        <view class="form-lists">
+            <van-cell-group>
+                <van-field
+                    label="账本名称"
+                    model:value="{{ walletForm.walletName }}"
+                    placeholder="请输入账本名称"
+                />
+                <van-field
+                    label="账本备注"
+                    model:value="{{ walletForm.walletName }}"
+                    placeholder="请输入账本备注"
+                    borde="{{false}}"
+                />
+                <van-cell title="账本类型" value="请选择账本类型" is-link bindtap="showWalletType"/>
+                <van-cell title="计入总账" value="请选择是否计入总账" is-link/>
+            </van-cell-group>
+        </view>
+    </van-popup>
+
+    <!--选择账本类型-->
+    <van-popup
+        show="{{ walletTypePopup }}"
+        round
+        position="bottom"
+        custom-style="height: 40%"
+        bind:close="closeWalletType"
+        class="wallet-type-popup"
+    >
+        <view class="type-content">
+            <van-grid gutter="{{ 20 }}" clickable column-num="3" border="{{false}}">
+                <van-grid-item wx:for="{{ type_lists }}" wx:key="index" use-slot>
+                    <image src="{{item.src}}" mode="aspectFill" class="type-icon"/>
+                    <view class="name-info mt10">
+                        <view>{{item.name}}</view>
+                        <view class="name-block"></view>
+                    </view>
+                </van-grid-item>
+            </van-grid>
+        </view>
+    </van-popup>
 </view>
