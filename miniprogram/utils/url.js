@@ -12,3 +12,7 @@ export function login(data) {
 export function getAllRecord(data) {
     return requestUrl("/getAllRecord", "get", data)
 }
+//获取所有账本记录
+export function getAllWallet(data) {
+    return requestUrl("/getAllWallet", "get", data)
+}

@@ -1,4 +1,7 @@
 // pages/account/account.ts
+import {getAllWallet} from "../../utils/url";
+import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
+
 const app = getApp();
 Page({
 
@@ -45,6 +48,18 @@ Page({
                 src: "../../assets/img/cash-type.svg"
             },
         ],
+        countInTotal: false, //是否计入总账 弹窗
+        columns: [
+            {
+                value: "否",
+                key: 0
+            },
+            {
+                value: "是",
+                key: 1
+            }
+        ],
+        walletLists: [], //账本列表
     },
 
     /**
@@ -75,11 +90,58 @@ Page({
             walletTypePopup: true,
         })
     },
+    // 关闭计入总账弹窗
+    closeCountTotal() {
+        this.setData({
+            countInTotal: false,
+        })
+    },
+    // 打开计入总账
+    showCountTotal() {
+        this.setData({
+            countInTotal: true,
+        })
+    },
+    // 是否计入总账 是、否 切换
+    countTotalpickerConfirm(event: any) {
+        this.setData({
+            "walletForm.onTotalCount": event.detail.value.key,
+        })
+        this.closeCountTotal()
+        console.log(this.data.walletForm)
+    },
+    // 选择账本类型
+    chooseWalletType(event: any) {
+        let item = event.currentTarget.dataset.item;
+        this.setData({
+            "walletForm.walletType": item.value,
+        })
+        this.closeWalletType();
+    },
+    // 获取所有账本列表
+    _getAllWallet() {
+        Toast.loading({
+            duration: 0,
+            message: "加载账本中...",
+            forbidClick: true,
+            mask: true,
+        })
+        getAllWallet({}).then(res => {
+            this.setData({
+                walletLists: res
+            })
+            Toast.clear();
+        }).catch(err => {
+            console.log('错误func--->_getAllWallet', err);
+            Toast.fail("获取账本出现错误");
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        this._getAllWallet();
     },
 
     /**

@@ -5,15 +5,17 @@
         <view class="account-title">账本</view>
         <!--账本列表-->
         <view class="wallet-lists">
-            <view class="wallet-block mb25" wx:for="{{[1,2,3,4]}}" wx:key="index">
-                <image src="../../assets/img/wallet.svg" class="wallet-icon"/>
+            <view class="wallet-block mb25" wx:for="{{walletLists}}" wx:key="index">
+                <image src="../../assets/img/{{wxsFilter.walletTypePicFilter(item.type)}}" class="wallet-icon"/>
                 <view class="wallet-info">
                     <!--账本名称-->
-                    <view class="info-name">七元的小账本</view>
+                    <view class="info-name">{{item.name}}</view>
+                    <!--账本类型-->
+                    <view class="mt15 wallet-type">{{wxsFilter.walletTypeFilter(item.type)}}账本</view>
                     <!--账本总支出、总收入-->
-                    <view class="info-total mt25">
-                        <view>总支出：777777元</view>
-                        <view class="ml30">总收入：777777元</view>
+                    <view class="info-total mt15">
+                        <view>总支出：{{item.totalOut}}元</view>
+                        <view class="ml30">总收入：{{item.totalIn}}元</view>
                     </view>
                 </view>
             </view>
@@ -29,7 +31,7 @@
         show="{{ walletPopup }}"
         round
         position="bottom"
-        custom-style="height: 80%"
+        custom-style="height: 55%"
         bind:close="onClose"
         class="wallet-popup"
     >
@@ -53,13 +55,20 @@
                     placeholder="请输入账本备注"
                     borde="{{false}}"
                 />
-                <van-cell title="账本类型" value="请选择账本类型" is-link bindtap="showWalletType"/>
-                <van-cell title="计入总账" value="请选择是否计入总账" is-link/>
+                <van-cell title="账本类型"
+                          value="{{walletForm.walletType == '' ? '请选择账本类型':wxsFilter.walletTypeFilter(walletForm.walletType)}}"
+                          is-link bindtap="showWalletType"/>
+                <van-cell title="计入总账" value="{{wxsFilter.countTotalFilter(walletForm.onTotalCount)}}" is-link
+                          bindtap="showCountTotal"/>
             </van-cell-group>
+        </view>
+        <view class="mt25 confirm-add">
+            <van-button round bindtap="onClose">取消</van-button>
+            <van-button round type="info" class="ml25">确认</van-button>
         </view>
     </van-popup>
 
-    <!--选择账本类型-->
+    <!--选择账本类型 弹窗-->
     <van-popup
         show="{{ walletTypePopup }}"
         round
@@ -70,7 +79,8 @@
     >
         <view class="type-content">
             <van-grid gutter="{{ 20 }}" clickable column-num="3" border="{{false}}">
-                <van-grid-item wx:for="{{ type_lists }}" wx:key="index" use-slot>
+                <van-grid-item wx:for="{{ type_lists }}" wx:key="index" use-slot bindtap="chooseWalletType"
+                               data-item="{{item}}">
                     <image src="{{item.src}}" mode="aspectFill" class="type-icon"/>
                     <view class="name-info mt10">
                         <view>{{item.name}}</view>
@@ -80,4 +90,22 @@
             </van-grid>
         </view>
     </van-popup>
+
+    <!--是否计入总账 弹窗-->
+    <van-popup
+        show="{{ countInTotal }}"
+        round
+        position="bottom"
+        custom-style="height: 40%"
+        bind:close="closeCountTotal"
+    >
+        <van-picker columns="{{ columns }}" title="是否计入总账" value-key="value" show-toolbar
+                    bind:confirm="countTotalpickerConfirm" bind:cancel="closeCountTotal"/>
+    </van-popup>
+
+
+    <van-toast id="van-toast"/>
 </view>
+
+    <!--引入过滤器-->
+<wxs src="../../utils/commonFilter.wxs" module="wxsFilter"></wxs>

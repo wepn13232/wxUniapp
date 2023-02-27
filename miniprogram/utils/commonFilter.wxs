@@ -1,0 +1,46 @@
+// 显示是否计入总账（过滤器）
+var countTotalFilter = function (val) {
+    switch (val) {
+        case 0:
+            return "否";
+        case 1:
+            return "是";
+    }
+}
+
+// 钱包类型 过滤器
+var walletTypeFilter = function (type) {
+    switch (type) {
+        case "zfb":
+            return "支付宝钱包";
+        case "wechat":
+            return "微信钱包";
+        case "qq":
+            return "QQ钱包";
+        case "bankCard":
+            return "储蓄卡";
+        case "cash":
+            return "现金";
+    }
+}
+
+var walletTypePicFilter = function (type) {
+    switch (type) {
+        case "zfb":
+            return "zfb-type.svg";
+        case "wechat":
+            return "wechat-type.svg";
+        case "qq":
+            return "qq-type.svg";
+        case "bankCard":
+            return "bank-type.svg";
+        case "cash":
+            return "cash-type.svg";
+    }
+}
+
+module.exports = {
+    countTotalFilter: countTotalFilter,
+    walletTypeFilter: walletTypeFilter,
+    walletTypePicFilter:walletTypePicFilter
+}
