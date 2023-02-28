@@ -2,6 +2,16 @@
 import {getAllWallet} from "../../utils/url";
 import Toast from "../../miniprogram_npm/@vant/weapp/toast/toast";
 
+// 账本列表数据类型
+interface walletObject {
+    name: string,
+    type: string,
+    countInTotal: number,
+    totalOut: number,
+    totalIn: number,
+    isChosen: number,
+}
+
 const app = getApp();
 Page({
 
@@ -59,7 +69,8 @@ Page({
                 key: 1
             }
         ],
-        walletLists: [], //账本列表
+        walletLists: [] as walletObject[], //账本列表
+        isCheckForm: false, //是否开始校验表单
     },
 
     /**
@@ -136,6 +147,84 @@ Page({
             Toast.fail("获取账本出现错误");
         })
     },
+    // 新增账本
+    addWallet() {
+        let flag = this.validateForm()
+        if (!flag) return;
+        let obj: walletObject = {
+            name: this.data.walletForm.walletName,
+            type: this.data.walletForm.walletType,
+            countInTotal: this.data.walletForm.onTotalCount,
+            totalOut: 0,
+            totalIn: 0,
+            isChosen: 0, //是否选中
+        };
+        let arr: walletObject[] = [...this.data.walletLists];
+        arr.push(obj);
+        this.setData({
+            walletLists: arr
+        });
+        Toast.success("新增账本成功");
+        this.onClose();
+        this.resetWalletForm(); //重置所有数据
+    },
+    // field文本输入变化
+    fieldOnChange(event: any) {
+        this.setData({
+            "walletForm.walletName": event.detail.value || "",
+        })
+    },
+    // 校验表单
+    validateForm() {
+        let flag = true;
+        this.setData({
+            isCheckForm: true
+        })
+        if (this.data.walletForm.walletName == "") {
+            flag = false;
+            Toast.fail("请填写必要信息")
+        } else if (this.data.walletForm.walletType == "") {
+            flag = false;
+            Toast.fail("请选择账本类型");
+        }
+        return flag;
+    },
+    // 重置新增账本的数据
+    resetWalletForm() {
+        this.setData({
+            "walletForm.walletName": "",
+            "walletForm.walletType": "",
+            "walletForm.walletNotice": "",
+            "walletForm.onTotalCount": 0,
+            isCheckForm: false,
+        });
+    },
+    // 切换账本
+    changeWallet(event: any) {
+        let currWallet = event.currentTarget.dataset.item;
+        let index = event.currentTarget.dataset.index;
+        if (currWallet.isChosen === 1) {
+            Toast.fail("已经是当前账本啦");
+            return;
+        }
+        Toast.loading({
+            duration: 0,
+            message: "切换中..."
+        })
+        // 手动延迟切换（没有对接接口，模拟接口延迟）
+        setTimeout(() => {
+            for (let i in this.data.walletLists) {
+                this.data.walletLists[i].isChosen = 0;
+            }
+            this.data.walletLists[index].isChosen = 1; //选中点击的账本
+            // 更新视图
+            this.setData({
+                walletLists: this.data.walletLists
+            })
+            Toast.clear();
+        }, 500)
+    },
+
 
     /**
      * 生命周期函数--监听页面加载

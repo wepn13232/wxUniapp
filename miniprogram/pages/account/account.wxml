@@ -5,11 +5,19 @@
         <view class="account-title">账本</view>
         <!--账本列表-->
         <view class="wallet-lists">
-            <view class="wallet-block mb25" wx:for="{{walletLists}}" wx:key="index">
+            <view class="wallet-block mb25" wx:for="{{walletLists}}" wx:key="index" hover-stay-time="{{50}}"
+                  hover-class="wallet-block-hover" data-item="{{item}}" data-index="{{index}}" bindtap="changeWallet">
                 <image src="../../assets/img/{{wxsFilter.walletTypePicFilter(item.type)}}" class="wallet-icon"/>
                 <view class="wallet-info">
                     <!--账本名称-->
-                    <view class="info-name">{{item.name}}</view>
+                    <view class="info-name">
+                        {{item.name}}
+                        <!--当前选中的账本-->
+                        <view class="curr-wallet" wx:if="{{item.isChosen == 1}}">
+                            <image src="../../assets/img/chosen-icon.svg" class="chosen-icon mr10"/>
+                            当前账本
+                        </view>
+                    </view>
                     <!--账本类型-->
                     <view class="mt15 wallet-type">{{wxsFilter.walletTypeFilter(item.type)}}账本</view>
                     <!--账本总支出、总收入-->
@@ -46,13 +54,15 @@
             <van-cell-group>
                 <van-field
                     label="账本名称"
-                    model:value="{{ walletForm.walletName }}"
+                    bind:blur="fieldOnChange"
                     placeholder="请输入账本名称"
+                    value="{{walletForm.walletName}}"
+                    error="{{isCheckForm && walletForm.walletName == '' ? true:false}}"
                 />
                 <van-field
                     label="账本备注"
-                    model:value="{{ walletForm.walletName }}"
                     placeholder="请输入账本备注"
+                    value="{{walletForm.walletNotice}}"
                     borde="{{false}}"
                 />
                 <van-cell title="账本类型"
@@ -64,7 +74,7 @@
         </view>
         <view class="mt25 confirm-add">
             <van-button round bindtap="onClose">取消</van-button>
-            <van-button round type="info" class="ml25">确认</van-button>
+            <van-button round type="info" class="ml25" bindtap="addWallet">确认</van-button>
         </view>
     </van-popup>
 

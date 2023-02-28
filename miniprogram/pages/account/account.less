@@ -25,9 +25,9 @@
         display: flex;
         align-items: center;
 
-        .wallet-type{
+        .wallet-type {
           font-size: 25rpx;
-          color: #303030;
+          color: #9E9C9D;
         }
 
         .wallet-icon {
@@ -43,6 +43,20 @@
 
           .info-name {
             font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+
+            .curr-wallet {
+              display: flex;
+              align-items: center;
+              font-size: 25rpx;
+              color: #9E9C9D;
+
+              .chosen-icon {
+                width: 35rpx;
+                height: 35rpx;
+              }
+            }
           }
 
           .info-total {
@@ -50,6 +64,10 @@
             font-size: 25rpx;
           }
         }
+      }
+
+      .wallet-block-hover{
+        background: rgba(189, 189, 184, 0.5);
       }
     }
 
@@ -90,10 +108,11 @@
       padding: 20rpx;
     }
 
-    .confirm-add{
+    .confirm-add {
       text-align: center;
-      .van-button{
-        width: 300rpx;
+
+      .van-button {
+        width: 250rpx;
       }
     }
   }
@@ -120,7 +139,7 @@
         }
       }
 
-      .van-grid-item__content--clickable{
+      .van-grid-item__content--clickable {
         border-radius: 20rpx;
       }
     }
