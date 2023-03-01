@@ -2,7 +2,7 @@
 App({
     globalData: {
         capsuleTop: "0px", //胶囊距离顶部的距离
-        safe_height: "0px", //距离顶部的安全距离
+        safe_height: "0px", //距离顶部的安全距离（包含胶囊的高度）
     },
 
     // 获取距离顶部的安全距离

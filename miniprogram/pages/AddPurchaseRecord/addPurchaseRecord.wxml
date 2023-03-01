@@ -1,0 +1,38 @@
+<!--添加新的收入、支出-->
+<view class="add-purchase-record">
+    <!--顶部导航栏-->
+    <view class="top-bar">
+        <van-nav-bar
+            title="添加收入/支出"
+            left-text="返回"
+            left-arrow
+            bind:click-left="onClickLeft"
+        />
+    </view>
+    <!--内容-->
+    <view class="container">
+        <!--选择收入或者是支出-->
+        <view class="type">
+            <van-tabs active="a" animated color="#46A9F7">
+                <van-tab title="支出" name="a">
+                    <!--支出的类型-->
+                    <view class="type-content">
+                        <van-grid gutter="{{ 10 }}" clickable column-num="4" border="{{false}}">
+                            <van-grid-item wx:for="{{ type_lists }}" wx:key="index" use-slot
+                                           data-item="{{item}}">
+                                <image src="{{item.src}}" mode="aspectFill" class="type-icon"/>
+                                <view class="name-info mt10">
+                                    <view>{{item.name}}</view>
+                                    <view class="name-block"></view>
+                                </view>
+                            </van-grid-item>
+                        </van-grid>
+                    </view>
+                </van-tab>
+                <van-tab title="收入" name="b">
+                    收入的内容
+                </van-tab>
+            </van-tabs>
+        </view>
+    </view>
+</view>

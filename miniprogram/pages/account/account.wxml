@@ -5,7 +5,7 @@
         <view class="account-title">账本</view>
         <!--账本列表-->
         <view class="wallet-lists">
-            <view class="wallet-block mb25" wx:for="{{walletLists}}" wx:key="index" hover-stay-time="{{50}}"
+            <view class="wallet-block mb25" wx:for="{{walletLists}}" wx:key="index" hover-stay-time="{{70}}"
                   hover-class="wallet-block-hover" data-item="{{item}}" data-index="{{index}}" bindtap="changeWallet">
                 <image src="../../assets/img/{{wxsFilter.walletTypePicFilter(item.type)}}" class="wallet-icon"/>
                 <view class="wallet-info">

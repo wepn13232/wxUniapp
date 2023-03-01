@@ -20,6 +20,12 @@ Component({
                 url: url
             })
         },
+        // 添加消费记录
+        addPurchaseRecord() {
+            wx.navigateTo({
+                url: '/pages/AddPurchaseRecord/addPurchaseRecord'
+            })
+        }
     },
     // 生命周期
     lifetimes: {

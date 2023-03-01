@@ -8,7 +8,7 @@
             <view class="tab-font">记录</view>
         </view>
     </van-tabbar-item>
-    <image src="../assets/img/add.svg" class="add-icon" mode="aspectFill"/>
+    <image src="../assets/img/add.svg" class="add-icon" mode="aspectFill" bindtap="addPurchaseRecord"/>
     <van-tabbar-item>
         <view class="tab-item">
             <image src="{{active === 1 ? '../assets/img/account-active.svg' : '../assets/img/account.svg'}}"></image>

@@ -209,7 +209,8 @@ Page({
         }
         Toast.loading({
             duration: 0,
-            message: "切换中..."
+            message: "切换中...",
+            forbidClick: true,
         })
         // 手动延迟切换（没有对接接口，模拟接口延迟）
         setTimeout(() => {
@@ -222,6 +223,10 @@ Page({
                 walletLists: this.data.walletLists
             })
             Toast.clear();
+            // 切换至账本记录页面
+            wx.switchTab({
+                url: '/pages/home/home'
+            })
         }, 500)
     },
 
