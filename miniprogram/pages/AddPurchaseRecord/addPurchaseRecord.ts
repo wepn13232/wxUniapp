@@ -8,31 +8,39 @@ Page({
         capsuleTop: app.globalData.capsuleTop, //安全距离（不包含胶囊高度）
         type_lists: [
             {
-                name: "QQ钱包",
-                value: "qq",
-                src: "../../assets/img/qq-type.svg"
+                name: "餐饮",
+                value: "food",
+                src: "../../assets/img/food-icon.svg"
             },
             {
-                name: "微信钱包",
-                value: "wechat",
-                src: "../../assets/img/wechat-type.svg"
+                name: "交通",
+                value: "traffic",
+                src: "../../assets/img/traffic-icon.svg"
             },
             {
-                name: "支付宝",
-                value: "zfb",
-                src: "../../assets/img/zfb-type.svg"
+                name: "购物",
+                value: "shopping",
+                src: "../../assets/img/shopping-icon.svg"
             },
             {
-                name: "储蓄卡",
-                value: "bankCard",
-                src: "../../assets/img/bank-type.svg"
+                name: "住房",
+                value: "house",
+                src: "../../assets/img/house-icon.svg"
             },
             {
-                name: "现金",
-                value: "cash",
-                src: "../../assets/img/cash-type.svg"
+                name: "游玩",
+                value: "ticket",
+                src: "../../assets/img/ticket-icon.svg"
+            },
+            {
+                name: "日用品",
+                value: "daily",
+                src: "../../assets/img/daily-icon.svg"
             },
         ],
+        outActive: 0, //当前选中的支出类型
+        inActive: 0, //当前选中的收入类型
+        moneyInput: "", //输入的金额
     },
 
     /**
@@ -42,8 +50,17 @@ Page({
     // 导航栏点击返回
     onClickLeft() {
         wx.navigateBack({
-            delta:1
+            delta: 1
         })
+    },
+    // 切换类型
+    chooseItem(event: any) {
+        let index = event.currentTarget.dataset.index;
+        setTimeout(() => {
+            this.setData({
+                outActive: index
+            })
+        }, 100)
     },
 
     /**

@@ -6,15 +6,16 @@
   .container {
     .type {
       .type-content {
-        padding: 30rpx 0;
+        padding: 40rpx 0;
 
         .type-icon {
-          width: 80rpx;
-          height: 80rpx;
+          width: 65rpx;
+          height: 60rpx;
         }
 
         .name-info {
           position: relative;
+          font-size: 30rpx;
 
           .name-block {
             width: 100%;
@@ -28,6 +29,41 @@
 
         .van-grid-item__content--clickable {
           border-radius: 20rpx;
+        }
+      }
+
+      .van-grid-item__content {
+        padding: 25rpx 15rpx;
+
+      }
+
+      .is-active {
+        background: rgba(121, 188, 250, 0.3);
+      }
+    }
+
+    .money-input {
+      width: calc(100% - 40rpx);
+      position: absolute;
+      bottom: env(safe-area-inset-bottom);
+      margin: 0 20rpx;
+      display: flex;
+      justify-content: space-around;
+
+      .input {
+        border-radius: 20px;
+        flex: 1;
+
+        .van-cell {
+          border-radius: 20px;
+        }
+      }
+
+      .confirm-btn {
+        width: 150rpx;
+
+        .van-button {
+          width: 100%;
         }
       }
     }

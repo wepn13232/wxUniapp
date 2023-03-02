@@ -4,7 +4,6 @@
     <view class="top-bar">
         <van-nav-bar
             title="添加收入/支出"
-            left-text="返回"
             left-arrow
             bind:click-left="onClickLeft"
         />
@@ -19,7 +18,9 @@
                     <view class="type-content">
                         <van-grid gutter="{{ 10 }}" clickable column-num="4" border="{{false}}">
                             <van-grid-item wx:for="{{ type_lists }}" wx:key="index" use-slot
-                                           data-item="{{item}}">
+                                           data-item="{{item}}" data-index="{{index}}"
+                                           content-class="{{outActive === index?'is-active':''}}"
+                                           bindtap="chooseItem">
                                 <image src="{{item.src}}" mode="aspectFill" class="type-icon"/>
                                 <view class="name-info mt10">
                                     <view>{{item.name}}</view>
@@ -33,6 +34,17 @@
                     收入的内容
                 </van-tab>
             </van-tabs>
+        </view>
+        <!--金额输入-->
+        <view class="money-input">
+            <view class="input">
+                <van-field
+                    value="{{ moneyInput }}"
+                    placeholder="请输入金额"
+                    border="{{ false }}"
+                />
+            </view>
+            <van-button type="info" round class="confirm-btn ml10">确认</van-button>
         </view>
     </view>
 </view>
